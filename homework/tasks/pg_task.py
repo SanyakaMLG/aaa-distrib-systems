@@ -65,6 +65,7 @@ class ItemStorage:
         """
         Напишите код для поиска записей, имеющих указанные user_id, title и description.
         """
+
         found = await self._pool.fetch("""
                 select *
                 from items
@@ -73,4 +74,5 @@ class ItemStorage:
                   and description=$3
                 """, user_id, title, description)
 
-        return [ItemEntry(*found[i].values) for i in range(len(found))]
+        return [ItemEntry(*row) for row in found]
+
