@@ -99,10 +99,6 @@ async def test_find_works(item_storage: ItemStorageTest):
         user_id=7, title="test1", description="test2"
     )
 
-    print(found)
-    print(type(found))
-    print(type(found[0]))
-
     assert sorted([i.item_id for i in found]) == [
         1,
         2,
