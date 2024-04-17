@@ -52,6 +52,8 @@ class ItemStorage:
         """
         # Don't use str-formatting, query args should be escaped to avoid
         # sql injections https://habr.com/ru/articles/148151/.
+        items = [[item.item_id, item.user_id, item.title, item.description] for item in items]
+
         await self._pool.executemany("""
                 insert into items
                 values ($1, $2, $3, $4)
